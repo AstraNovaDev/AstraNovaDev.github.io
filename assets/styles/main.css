@@ -6,7 +6,7 @@
   --color-text-light: #ffffff;
   --color-text-dark: #111111;
 
-  --font-family-base: 'Helvetica Neue', sans-serif;
+  --font-family-base: "Helvetica Neue", sans-serif;
   --font-size-base: 1rem;
   --font-size-lg: 1.25rem;
   --font-size-xl: 3rem;
@@ -28,14 +28,8 @@ body {
 
 nav.navbar {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--spacing-md) var(--spacing-lg);
-  background-color: var(--color-section-dark);
-}
-
-.navbar .brand {
-  font-weight: bold;
+  justify-content: center;
+  padding: var(--spacing-md) 0;
 }
 
 .navbar .nav-links {
@@ -44,41 +38,47 @@ nav.navbar {
   gap: var(--spacing-md);
   margin: 0;
   padding: 0;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .navbar .nav-links li a {
   color: var(--color-text-light);
   text-decoration: none;
+  font-size: 1rem;
 }
 
-.hamburger {
-  display: none;
-  font-size: var(--font-size-lg);
-  cursor: pointer;
-}
-
-@media (max-width: 768px) {
-  .navbar .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    margin-top: var(--spacing-sm);
-  }
-
-  .navbar .nav-links.active {
-    display: flex;
-  }
-
-  .hamburger {
-    display: block;
+@media (min-width: 768px) {
+  .navbar .nav-links li a {
+    font-size: 1.125rem;
   }
 }
 
 header {
   padding: var(--spacing-xl);
   text-align: center;
-  background: url('https://source.unsplash.com/featured/?desk,workspace') no-repeat center;
-  background-size: cover;
+  background: linear-gradient(
+    135deg,
+    var(--color-orange),
+    var(--color-background)
+  );
+}
+
+.hero-content {
+  text-align: center;
+}
+
+.logo {
+  width: 150px;
+  max-width: 40vw;
+  height: auto;
+  margin-bottom: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+  .logo {
+    width: 200px;
+  }
 }
 
 h1 {
@@ -132,7 +132,8 @@ footer {
   flex-wrap: wrap;
 }
 
-input, textarea {
+input,
+textarea {
   width: 100%;
   padding: var(--spacing-sm);
   margin: var(--spacing-xs) 0;
