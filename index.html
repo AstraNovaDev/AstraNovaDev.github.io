@@ -8,12 +8,21 @@
 
 </head>
 <body>
+  <nav class="navbar">
+    <div class="brand">AstraNova</div>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#product">Product</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
   <header>
     <h1>Innovating the Future</h1>
     <p class="lead">AstraNova is a forward-thinking technology company driving innovation at the intersection of health, bioanalysis, and artificial intelligence — starting with our flagship platform, <strong>BodyOS</strong>.</p>
   </header>
 
-  <section class="section dark">
+  <section id="product" class="section dark">
     <div class="grid">
       <div>
         <h2>Master Your Body. Optimize Your Life.</h2>
@@ -33,7 +42,7 @@
     </div>
   </section>
 
-  <section class="section orange">
+  <section id="about" class="section orange">
     <h2>About AstraNova</h2>
     <p>
       AstraNova LLC is a health-focused technology company dedicated to building tools that empower the next generation of human performance. As a development and innovation studio, AstraNova combines cutting-edge artificial intelligence with practical health applications — starting with BodyOS, our AI-powered bioanalysis and nutrition platform.
@@ -46,7 +55,7 @@
     </p>
   </section>
 
-  <section class="section orange">
+  <section id="contact" class="section orange">
     <h2>Contact Us</h2>
     <p>Ready to join forces? Give us your details and we’ll connect with you in no time. We’re eager to hear from you!</p>
     <form action="mailto:contact@astranovallc.com" method="POST" enctype="text/plain">
@@ -73,5 +82,12 @@
       (608) 620-4548
     </div>
   </footer>
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
