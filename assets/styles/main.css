@@ -510,7 +510,7 @@ footer {
 }
 
 .footer-logo {
-  height: 24px;
+  height: 16px;
   width: auto;
   filter: invert(1);
 }
@@ -524,6 +524,31 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+  
+  .nav-links {
+    gap: var(--spacing-6);
+  }
+  
+  .hero {
+    min-height: 70vh;
+  }
+  
+  .hero-content {
+    padding: var(--spacing-12) 0;
+  }
+  
+  .nav-logo {
+    height: 18px;
+  }
+  
+  .footer-logo {
+    height: 14px;
+  }
+  
   .footer-content {
     text-align: center;
     flex-direction: column;
