@@ -124,14 +124,15 @@ p {
 /* Navigation */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: var(--spacing-6) 0;
   background: var(--color-white);
+  gap: var(--spacing-16);
 }
 
 .nav-logo {
-  height: 32px;
+  height: 36px;
   width: auto;
   transition: var(--transition-base);
 }
@@ -163,16 +164,39 @@ p {
   .navbar {
     flex-direction: column;
     gap: var(--spacing-4);
+    justify-content: center;
   }
   
   .nav-links {
     gap: var(--spacing-6);
   }
+  
+  .hero {
+    min-height: 70vh;
+  }
+  
+  .hero-content {
+    padding: var(--spacing-12) 0;
+  }
+  
+  .hero-logo {
+    height: 48px;
+  }
+  
+  .astranova-brand {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-2);
+  }
+  
+  .astranova-logo {
+    height: 40px;
+  }
 }
 
 /* Hero Section */
 .hero {
-  min-height: 100vh;
+  min-height: 80vh;
   background: linear-gradient(135deg, var(--color-grey-50) 0%, var(--color-white) 100%);
   display: flex;
   flex-direction: column;
@@ -185,7 +209,17 @@ p {
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: var(--spacing-20) 0;
+  padding: var(--spacing-16) 0;
+}
+
+.hero-brand {
+  margin-bottom: var(--spacing-6);
+}
+
+.hero-logo {
+  height: 60px;
+  width: auto;
+  opacity: 0.9;
 }
 
 .hero-content h1 {
@@ -213,13 +247,16 @@ p {
   background-color: var(--color-grey-50);
 }
 
-.waitlist-section {
+.waitlist-section,
+.bodyos-section {
   background: linear-gradient(135deg, var(--color-grey-900) 0%, var(--color-black) 100%);
   color: var(--color-white);
 }
 
 .waitlist-section h2,
-.waitlist-section p {
+.waitlist-section p,
+.bodyos-section .product-tagline,
+.bodyos-section .product-description {
   color: var(--color-white);
 }
 
@@ -299,12 +336,23 @@ p {
 }
 
 .access-card {
-  background: var(--color-white);
-  border: 1px solid var(--color-grey-200);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-6);
   box-shadow: var(--shadow-base);
   transition: var(--transition-base);
+  backdrop-filter: blur(10px);
+}
+
+.bodyos-section .access-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.bodyos-section .access-card h3,
+.bodyos-section .access-card p {
+  color: var(--color-white);
 }
 
 .access-card:hover {
@@ -337,12 +385,48 @@ p {
   }
 }
 
+.astranova-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+}
+
+.astranova-logo {
+  height: 48px;
+  width: auto;
+}
+
 .about-text h2 {
-  margin-bottom: var(--spacing-4);
+  margin: 0;
+  font-size: var(--font-size-2xl);
 }
 
 .about-text p {
   font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-8);
+}
+
+.company-values {
+  display: grid;
+  gap: var(--spacing-6);
+}
+
+.value {
+  padding: var(--spacing-4);
+  border-left: 3px solid var(--color-grey-200);
+}
+
+.value h4 {
+  margin: 0 0 var(--spacing-2) 0;
+  color: var(--color-black);
+  font-size: var(--font-size-base);
+}
+
+.value p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-grey-600);
 }
 
 .company-stats {
@@ -543,6 +627,11 @@ footer {
 
 .fade-in-up.delay-2 {
   animation-delay: 0.4s;
+  opacity: 0;
+}
+
+.fade-in-up.delay-3 {
+  animation-delay: 0.6s;
   opacity: 0;
 }
 
