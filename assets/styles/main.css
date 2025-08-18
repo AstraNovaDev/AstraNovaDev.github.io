@@ -124,14 +124,11 @@ p {
 /* Navigation */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: var(--spacing-6) 0;
   background: var(--color-white);
-}
-
-.nav-brand {
-  margin-right: var(--spacing-24);
+  gap: var(--spacing-8);
 }
 
 .nav-logo {
@@ -516,7 +513,6 @@ footer {
 .footer-logo {
   height: 20px;
   width: auto;
-  filter: invert(1);
 }
 
 .footer-details {
@@ -531,6 +527,7 @@ footer {
   .navbar {
     flex-direction: column;
     gap: var(--spacing-4);
+    justify-content: center;
   }
   
   .nav-links {
