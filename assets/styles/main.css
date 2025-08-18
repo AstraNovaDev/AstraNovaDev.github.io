@@ -510,7 +510,7 @@ footer {
 }
 
 .footer-logo {
-  height: 16px;
+  height: 20px;
   width: auto;
   filter: invert(1);
 }
@@ -546,7 +546,7 @@ footer {
   }
   
   .footer-logo {
-    height: 14px;
+    height: 18px;
   }
   
   .footer-content {
