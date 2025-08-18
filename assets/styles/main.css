@@ -128,7 +128,6 @@ p {
   align-items: center;
   padding: var(--spacing-6) 0;
   background: var(--color-white);
-  gap: var(--spacing-16);
 }
 
 .nav-logo {
@@ -179,19 +178,6 @@ p {
     padding: var(--spacing-12) 0;
   }
   
-  .hero-logo {
-    height: 48px;
-  }
-  
-  .astranova-brand {
-    flex-direction: column;
-    text-align: center;
-    gap: var(--spacing-2);
-  }
-  
-  .astranova-logo {
-    height: 40px;
-  }
 }
 
 /* Hero Section */
@@ -212,15 +198,6 @@ p {
   padding: var(--spacing-16) 0;
 }
 
-.hero-brand {
-  margin-bottom: var(--spacing-6);
-}
-
-.hero-logo {
-  height: 60px;
-  width: auto;
-  opacity: 0.9;
-}
 
 .hero-content h1 {
   max-width: 800px;
@@ -385,48 +362,12 @@ p {
   }
 }
 
-.astranova-brand {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-4);
-  margin-bottom: var(--spacing-6);
-}
-
-.astranova-logo {
-  height: 48px;
-  width: auto;
-}
-
 .about-text h2 {
-  margin: 0;
-  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-4);
 }
 
 .about-text p {
   font-size: var(--font-size-lg);
-  margin-bottom: var(--spacing-8);
-}
-
-.company-values {
-  display: grid;
-  gap: var(--spacing-6);
-}
-
-.value {
-  padding: var(--spacing-4);
-  border-left: 3px solid var(--color-grey-200);
-}
-
-.value h4 {
-  margin: 0 0 var(--spacing-2) 0;
-  color: var(--color-black);
-  font-size: var(--font-size-base);
-}
-
-.value p {
-  margin: 0;
-  font-size: var(--font-size-sm);
-  color: var(--color-grey-600);
 }
 
 .company-stats {
@@ -563,6 +504,12 @@ footer {
   font-weight: 600;
 }
 
+.footer-logo {
+  height: 24px;
+  width: auto;
+  filter: invert(1);
+}
+
 .footer-details {
   display: flex;
   flex-direction: column;
@@ -630,10 +577,6 @@ footer {
   opacity: 0;
 }
 
-.fade-in-up.delay-3 {
-  animation-delay: 0.6s;
-  opacity: 0;
-}
 
 .slide-in-left {
   animation: slideInLeft 0.8s ease forwards;
