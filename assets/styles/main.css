@@ -297,9 +297,9 @@ p {
 /* DNA Matrix Background - Individual Rows */
 .dna-row {
   position: absolute;
-  left: -10%;
-  width: 120%;
-  height: 1.2rem;
+  left: -20%;
+  width: 140%;
+  height: 1rem;
   font-family: 'SF Mono', 'Monaco', 'Menlo', 'Courier New', monospace;
   font-size: 0.55rem;
   white-space: nowrap;
@@ -318,12 +318,12 @@ p {
 
 /* Row 1 - Top, most opaque */
 .hero-content::before {
-  content: 'ATCG GCTA TTAA AATT CGCG TATA GCGC AAAA TTTT GGGG CCCC ATGC TTAG GGTT CCGG TTCC ATCG GCTA TTAA AATT CGCG TATA GCGC AAAA TTTT GGGG CCCC ATGC TTAG GGTT CCGG TTCC ATCG GCTA TTAA AATT CGCG TATA GCGC AAAA TTTT GGGG CCCC ATGC TTAG GGTT CCGG TTCC ATCG GCTA TTAA AATT CGCG TATA GCGC AAAA TTTT GGGG CCCC ATGC';
+  content: 'ATCG GCTA TTAA AATT CGCG TATA GCGC AAAA TTTT GGGG CCCC ATGC TTAG GGTT CCGG TTCC GCAT ACGT TTAG CCAA GCAT ACGT TTAG CCAA CGAT TTAG AACG GGCC TATG ACCT GTTA CCAA ATCG GCTA TTAA AATT CGCG TATA GCGC AAAA TTTT GGGG CCCC ATGC TTAG GGTT CCGG TTCC GCAT ACGT TTAG CCAA GCAT ACGT TTAG CCAA CGAT TTAG AACG GGCC TATG ACCT GTTA CCAA ATCG GCTA TTAA AATT CGCG TATA GCGC AAAA TTTT GGGG CCCC ATGC TTAG GGTT CCGG TTCC GCAT ACGT TTAG CCAA GCAT ACGT TTAG CCAA CGAT TTAG AACG GGCC TATG ACCT GTTA CCAA';
   position: absolute;
-  top: 1rem;
-  left: -10%;
-  width: 120%;
-  height: 1.2rem;
+  top: 0.5rem;
+  left: -20%;
+  width: 140%;
+  height: 1rem;
   font-family: 'SF Mono', 'Monaco', 'Menlo', 'Courier New', monospace;
   font-size: 0.55rem;
   color: rgba(217, 30, 10, 0.5);
@@ -379,11 +379,12 @@ p {
   .hero-content::before {
     font-size: 0.45rem;
     animation-duration: 20s;
+    height: 0.9rem;
   }
   
   .dna-row {
     font-size: 0.45rem;
-    height: 1rem;
+    height: 0.9rem;
   }
   
   .dna-row.left {
