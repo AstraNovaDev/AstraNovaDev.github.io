@@ -362,8 +362,13 @@ p {
   }
 }
 
-.about-text h2 {
-  margin-bottom: var(--spacing-4);
+.about-brand {
+  margin-bottom: var(--spacing-6);
+}
+
+.about-logo {
+  height: 32px;
+  width: auto;
 }
 
 .about-text p {
