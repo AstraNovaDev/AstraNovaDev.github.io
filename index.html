@@ -111,10 +111,8 @@
               scrollElements.heroContent.style.opacity = opacity;
             } else {
               // Mobile: simpler fade effect only
-              const opacity = 1 - (scrollProgress * 0.7);
+              const opacity = 1 - (scrollProgress * 0.5);
               scrollElements.heroContent.style.opacity = opacity;
-              scrollElements.heroContent.style.transform = 'none';
-              scrollElements.hero.style.transform = 'none';
             }
           }
           
@@ -127,12 +125,20 @@
               const progress = Math.max(0, Math.min(1, (windowHeight - rect.top) / windowHeight));
               
               if (scrollElements.productBrand) {
-                scrollElements.productBrand.style.transform = `translateX(${-50 * (1 - progress)}px)`;
+                if (!isMobile) {
+                  scrollElements.productBrand.style.transform = `translateX(${-50 * (1 - progress)}px)`;
+                } else {
+                  scrollElements.productBrand.style.transform = `translateY(${20 * (1 - progress)}px)`;
+                }
                 scrollElements.productBrand.style.opacity = progress;
               }
               
               if (scrollElements.productContent) {
-                scrollElements.productContent.style.transform = `translateX(${50 * (1 - progress)}px)`;
+                if (!isMobile) {
+                  scrollElements.productContent.style.transform = `translateX(${50 * (1 - progress)}px)`;
+                } else {
+                  scrollElements.productContent.style.transform = `translateY(${30 * (1 - progress)}px)`;
+                }
                 scrollElements.productContent.style.opacity = progress;
               }
             }

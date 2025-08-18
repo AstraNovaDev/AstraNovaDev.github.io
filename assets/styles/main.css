@@ -294,41 +294,7 @@ p {
   perspective: 1000px;
 }
 
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(252, 36, 15, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(252, 36, 15, 0.05) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-/* DNA Matrix Background */
-.hero::after {
-  content: 'ATCGATCGATCGATCGATCGATCGATCG→GCTAGCTAGCTAGCTAGCTAGCTA→TTAACCGGTTAACCGGTTAACCGG→AATTCCGGAATTCCGGAATTCCGG\ACGCGCGCGCGCGCGCGCGCGCGCG→TATATATATATATATATATATATAT→GCGCGCGCGCGCGCGCGCGCGCGC→AAAAAAAAAAAAAAAAAAAAAAAAA\ATTTTTTTTTTTTTTTTTTTTTTTT→GGGGGGGGGGGGGGGGGGGGGGGG→CCCCCCCCCCCCCCCCCCCCCCCC→ATGCATGCATGCATGCATGCATGC\ATTAGCCAATTAGCCAATTAGCCAA→GGTTAACGGGTTAACGGGTTAACG→CCGGAATTCCGGAATTCCGGAATT→TTCCGGAATTCCGGAATTCCGGAA\AATCGATCGATCGATCGATCGATCG→GCTAGCTAGCTAGCTAGCTAGCTA→TTAACCGGTTAACCGGTTAACCGG→AATTCCGGAATTCCGGAATTCCGG\ACGCGCGCGCGCGCGCGCGCGCGCG→TATATATATATATATATATATATAT→GCGCGCGCGCGCGCGCGCGCGCGC→AAAAAAAAAAAAAAAAAAAAAAAAA';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 100%;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  font-size: 0.75rem;
-  line-height: 1.8;
-  color: rgba(252, 36, 15, 0.15);
-  letter-spacing: 0.1em;
-  white-space: pre-line;
-  overflow: hidden;
-  animation: dnaMatrixFlow 25s linear infinite;
-  pointer-events: none;
-  text-shadow: 0 0 10px rgba(252, 36, 15, 0.1);
-  z-index: 0;
-}
-
-/* Additional DNA Matrix Layers */
+/* DNA Matrix Background - Layer 1 */
 .hero::before {
   content: 'CGTAGCTACGTAGCTACGTAGCTA→ATGCATGCATGCATGCATGCATGC→GGCCAATTGGCCAATTGGCCAATT→TTAAGGCCTTAAGGCCTTAAGGCC\AGCGCGCGCGCGCGCGCGCGCGCGC→CATATATATATATATATATATATA→TGCGCGCGCGCGCGCGCGCGCGCG→GAAAAAAAAAAAAAAAAAAAAAA\ATTTTTTTTTTTTTTTTTTTTTTTT→CGGGGGGGGGGGGGGGGGGGGGG→GCCCCCCCCCCCCCCCCCCCCCC→CATGCATGCATGCATGCATGCATG\CTTAGCCAATTAGCCAATTAGCCAA→CGGTTAACGGGTTAACGGGTTAAC→GCCGGAATTCCGGAATTCCGGAAT→ATTCCGGAATTCCGGAATTCCGGA';
   position: absolute;
@@ -339,13 +305,34 @@ p {
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
   font-size: 0.65rem;
   line-height: 2.2;
-  color: rgba(252, 36, 15, 0.08);
+  color: rgba(252, 36, 15, 0.15);
   letter-spacing: 0.12em;
   white-space: pre-line;
   overflow: hidden;
   animation: dnaMatrixFlow 35s linear infinite reverse;
   pointer-events: none;
-  text-shadow: 0 0 8px rgba(252, 36, 15, 0.05);
+  text-shadow: 0 0 10px rgba(252, 36, 15, 0.08);
+  z-index: 0;
+}
+
+/* DNA Matrix Background - Layer 2 */
+.hero::after {
+  content: 'ATCGATCGATCGATCGATCGATCGATCG→GCTAGCTAGCTAGCTAGCTAGCTA→TTAACCGGTTAACCGGTTAACCGG→AATTCCGGAATTCCGGAATTCCGG\ACGCGCGCGCGCGCGCGCGCGCGCG→TATATATATATATATATATATATAT→GCGCGCGCGCGCGCGCGCGCGCGC→AAAAAAAAAAAAAAAAAAAAAAAAA\ATTTTTTTTTTTTTTTTTTTTTTTT→GGGGGGGGGGGGGGGGGGGGGGGG→CCCCCCCCCCCCCCCCCCCCCCCC→ATGCATGCATGCATGCATGCATGC\ATTAGCCAATTAGCCAATTAGCCAA→GGTTAACGGGTTAACGGGTTAACG→CCGGAATTCCGGAATTCCGGAATT→TTCCGGAATTCCGGAATTCCGGAA\AATCGATCGATCGATCGATCGATCG→GCTAGCTAGCTAGCTAGCTAGCTA→TTAACCGGTTAACCGGTTAACCGG→AATTCCGGAATTCCGGAATTCCGG\ACGCGCGCGCGCGCGCGCGCGCGCG→TATATATATATATATATATATATAT→GCGCGCGCGCGCGCGCGCGCGCGC→AAAAAAAAAAAAAAAAAAAAAAAAA';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.75rem;
+  line-height: 1.8;
+  color: rgba(252, 36, 15, 0.25);
+  letter-spacing: 0.1em;
+  white-space: pre-line;
+  overflow: hidden;
+  animation: dnaMatrixFlow 25s linear infinite;
+  pointer-events: none;
+  text-shadow: 0 0 12px rgba(252, 36, 15, 0.15);
   z-index: 0;
 }
 
@@ -385,18 +372,24 @@ p {
 @media (max-width: 768px) {
   .hero {
     will-change: auto;
-    transform: none;
   }
   
   .hero-content {
     will-change: auto;
-    transform: none;
   }
   
-  .hero::after,
+  .hero::after {
+    animation-duration: 30s;
+    font-size: 0.5rem;
+    line-height: 1.8;
+    color: rgba(252, 36, 15, 0.2);
+  }
+  
   .hero::before {
-    animation-duration: 40s;
-    opacity: 0.1;
+    animation-duration: 35s;
+    font-size: 0.45rem;
+    line-height: 2.0;
+    color: rgba(252, 36, 15, 0.12);
   }
 }
 
