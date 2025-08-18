@@ -21,10 +21,58 @@
         } else {
           history.replaceState({}, document.title, window.location.pathname);
         }
+        
+        // Handle waitlist form submission
+        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          const name = document.getElementById('fullName').value;
+          const email = document.getElementById('emailAddress').value;
+          const button = e.target.querySelector('button');
+          
+          // Show loading state
+          button.textContent = 'Joining...';
+          button.disabled = true;
+          
+          // Send to Netlify Forms (free, no setup needed)
+          fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+              'form-name': 'waitlist',
+              'name': name,
+              'email': email,
+              'timestamp': new Date().toISOString()
+            })
+          })
+          .then(() => {
+            // Show success message
+            document.querySelector('.waitlist-form').style.display = 'none';
+            document.getElementById('thank-you').style.display = 'block';
+            window.location.hash = 'thank-you';
+          })
+          .catch(() => {
+            // Fallback - create email link
+            const subject = 'BodyOS Waitlist Signup';
+            const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0ATimestamp: ${new Date().toISOString()}`;
+            window.location.href = `mailto:waitlist@astranovallc.com?subject=${subject}&body=${body}`;
+          })
+          .finally(() => {
+            button.textContent = 'Join Waitlist';
+            button.disabled = false;
+          });
+        });
       });
     </script>
   </head>
   <body>
+    <!-- Hidden form for Netlify detection -->
+    <form name="waitlist" netlify hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="timestamp" />
+    </form>
+
     <header class="hero">
       <nav class="navbar">
         <div class="nav-brand">
@@ -112,12 +160,11 @@
           <h2>Join the BodyOS Waitlist</h2>
           <p>Be among the first to experience the future of personalized health optimization.</p>
           
-          <form class="waitlist-form" action="mailto:waitlist@astranovallc.com" method="POST" enctype="text/plain">
+          <form class="waitlist-form" id="waitlistForm">
             <div class="form-group">
-              <input type="text" name="Name" placeholder="Full Name" required />
-              <input type="email" name="Email" placeholder="Email Address" required />
+              <input type="text" id="fullName" name="name" placeholder="Full Name" required />
+              <input type="email" id="emailAddress" name="email" placeholder="Email Address" required />
             </div>
-            <input type="hidden" name="Subject" value="BodyOS Waitlist Signup" />
             <button type="submit" class="button primary large">Join Waitlist</button>
           </form>
           
