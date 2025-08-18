@@ -93,20 +93,29 @@
         function updateScrollEffects() {
           const scrollTop = window.pageYOffset;
           const windowHeight = window.innerHeight;
+          const isMobile = window.innerWidth <= 768;
           
           // Hero parallax and scaling effects
           if (scrollElements.hero && scrollElements.heroContent) {
             const heroHeight = scrollElements.hero.offsetHeight;
             const scrollProgress = Math.min(scrollTop / heroHeight, 1);
             
-            // Parallax background
-            scrollElements.hero.style.transform = `translateY(${scrollTop * 0.5}px)`;
-            
-            // Scale and fade hero content
-            const scale = 1 - (scrollProgress * 0.1);
-            const opacity = 1 - (scrollProgress * 0.8);
-            scrollElements.heroContent.style.transform = `scale(${scale}) translateY(${scrollTop * 0.3}px)`;
-            scrollElements.heroContent.style.opacity = opacity;
+            if (!isMobile) {
+              // Parallax background (desktop only)
+              scrollElements.hero.style.transform = `translateY(${scrollTop * 0.3}px)`;
+              
+              // Scale and fade hero content (reduced effect)
+              const scale = 1 - (scrollProgress * 0.05);
+              const opacity = 1 - (scrollProgress * 0.6);
+              scrollElements.heroContent.style.transform = `scale(${scale}) translateY(${scrollTop * 0.2}px)`;
+              scrollElements.heroContent.style.opacity = opacity;
+            } else {
+              // Mobile: simpler fade effect only
+              const opacity = 1 - (scrollProgress * 0.7);
+              scrollElements.heroContent.style.opacity = opacity;
+              scrollElements.heroContent.style.transform = 'none';
+              scrollElements.hero.style.transform = 'none';
+            }
           }
           
           // Product section reveal

@@ -112,6 +112,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   line-height: 1.2;
   color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
 h1 {
@@ -125,9 +126,13 @@ h1 {
   line-height: 1.1;
   margin-bottom: var(--spacing-6);
   color: white;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.5),
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(252, 36, 15, 0.1);
   position: relative;
   z-index: 2;
+  letter-spacing: -0.02em;
 }
 
 .highlight {
@@ -145,20 +150,31 @@ h1 {
 .badge {
   display: inline-block;
   padding: var(--spacing-2) var(--spacing-4);
-  background: linear-gradient(135deg, rgba(252, 36, 15, 0.8), rgba(252, 36, 15, 1));
+  background: 
+    linear-gradient(135deg, var(--color-bodyos-orange) 0%, var(--color-bodyos-orange-dark) 100%),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  background-blend-mode: overlay, normal;
   color: white;
   font-size: var(--font-size-sm);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   border-radius: 999px;
-  box-shadow: 0 4px 14px rgba(252, 36, 15, 0.3);
+  box-shadow: 
+    0 4px 20px rgba(252, 36, 15, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 3;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 h2 {
   font-size: var(--font-size-3xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 h3 {
@@ -211,11 +227,31 @@ p {
   color: var(--color-grey-700);
   text-decoration: none;
   font-weight: 500;
-  transition: var(--transition-base);
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  position: relative;
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--border-radius);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--color-bodyos-orange);
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transform: translateX(-50%);
 }
 
 .nav-links a:hover {
   color: var(--color-black);
+  background: rgba(252, 36, 15, 0.05);
+}
+
+.nav-links a:hover::after {
+  width: 80%;
 }
 
 @media (max-width: 768px) {
@@ -243,9 +279,10 @@ p {
 .hero {
   min-height: 80vh;
   background: 
-    linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 26, 26, 0.9) 50%, rgba(38, 38, 38, 0.85) 100%),
-    radial-gradient(circle at 30% 70%, rgba(252, 36, 15, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 70% 30%, rgba(252, 36, 15, 0.02) 0%, transparent 60%),
+    linear-gradient(135deg, rgba(8, 8, 8, 0.98) 0%, rgba(18, 18, 18, 0.95) 30%, rgba(28, 28, 28, 0.92) 70%, rgba(35, 35, 35, 0.88) 100%),
+    radial-gradient(ellipse at 25% 75%, rgba(252, 36, 15, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 75% 25%, rgba(252, 36, 15, 0.03) 0%, transparent 70%),
+    radial-gradient(circle at 50% 50%, rgba(252, 36, 15, 0.01) 0%, transparent 80%),
     #0a0a0a;
   display: flex;
   flex-direction: column;
@@ -254,6 +291,7 @@ p {
   color: white;
   will-change: transform;
   backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 .hero::before {
@@ -269,55 +307,62 @@ p {
   pointer-events: none;
 }
 
-/* DNA Sequencing Background */
+/* DNA Matrix Background */
 .hero::after {
-  content: 'ATCGATCG→GCTAGCTA→TTAACCGG→AATTCCGG CGCGCGCG→TATATATAT→GCGCGCGC→AAAAAAAA TTTTTTTT→GGGGGGGG→CCCCCCCC→ATGCATGC TTAGCCAA→GGTTAACG→CCGGAATT→TTCCGGAA ATCGATCG→GCTAGCTA→TTAACCGG→AATTCCGG CGCGCGCG→TATATATAT→GCGCGCGC→AAAAAAAA TTTTTTTT→GGGGGGGG→CCCCCCCC→ATGCATGC TTAGCCAA→GGTTAACG→CCGGAATT→TTCCGGAA ATCGATCG→GCTAGCTA→TTAACCGG→AATTCCGG CGCGCGCG→TATATATAT→GCGCGCGC→AAAAAAAA';
+  content: 'ATCGATCGATCGATCGATCGATCGATCG→GCTAGCTAGCTAGCTAGCTAGCTA→TTAACCGGTTAACCGGTTAACCGG→AATTCCGGAATTCCGGAATTCCGG\ACGCGCGCGCGCGCGCGCGCGCGCG→TATATATATATATATATATATATAT→GCGCGCGCGCGCGCGCGCGCGCGC→AAAAAAAAAAAAAAAAAAAAAAAAA\ATTTTTTTTTTTTTTTTTTTTTTTT→GGGGGGGGGGGGGGGGGGGGGGGG→CCCCCCCCCCCCCCCCCCCCCCCC→ATGCATGCATGCATGCATGCATGC\ATTAGCCAATTAGCCAATTAGCCAA→GGTTAACGGGTTAACGGGTTAACG→CCGGAATTCCGGAATTCCGGAATT→TTCCGGAATTCCGGAATTCCGGAA\AATCGATCGATCGATCGATCGATCG→GCTAGCTAGCTAGCTAGCTAGCTA→TTAACCGGTTAACCGGTTAACCGG→AATTCCGGAATTCCGGAATTCCGG\ACGCGCGCGCGCGCGCGCGCGCGCG→TATATATATATATATATATATATAT→GCGCGCGCGCGCGCGCGCGCGCGC→AAAAAAAAAAAAAAAAAAAAAAAAA';
   position: absolute;
-  top: -50%;
-  left: -10%;
-  right: -10%;
-  bottom: -50%;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace;
-  font-size: 0.6rem;
-  line-height: 2;
-  color: rgba(252, 36, 15, 0.12);
-  letter-spacing: 0.15em;
-  word-spacing: 1.5em;
-  white-space: pre-wrap;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.75rem;
+  line-height: 1.8;
+  color: rgba(252, 36, 15, 0.15);
+  letter-spacing: 0.1em;
+  white-space: pre-line;
   overflow: hidden;
-  animation: dnaSequencing 30s linear infinite;
+  animation: dnaMatrixFlow 25s linear infinite;
   pointer-events: none;
-  text-shadow: 0 0 8px rgba(252, 36, 15, 0.08), 0 0 20px rgba(252, 36, 15, 0.04);
-  transform-origin: center;
-  mix-blend-mode: screen;
-  opacity: 0.8;
+  text-shadow: 0 0 10px rgba(252, 36, 15, 0.1);
+  z-index: 0;
 }
 
-@keyframes dnaSequencing {
+/* Additional DNA Matrix Layers */
+.hero::before {
+  content: 'CGTAGCTACGTAGCTACGTAGCTA→ATGCATGCATGCATGCATGCATGC→GGCCAATTGGCCAATTGGCCAATT→TTAAGGCCTTAAGGCCTTAAGGCC\AGCGCGCGCGCGCGCGCGCGCGCGC→CATATATATATATATATATATATA→TGCGCGCGCGCGCGCGCGCGCGCG→GAAAAAAAAAAAAAAAAAAAAAA\ATTTTTTTTTTTTTTTTTTTTTTTT→CGGGGGGGGGGGGGGGGGGGGGG→GCCCCCCCCCCCCCCCCCCCCCC→CATGCATGCATGCATGCATGCATG\CTTAGCCAATTAGCCAATTAGCCAA→CGGTTAACGGGTTAACGGGTTAAC→GCCGGAATTCCGGAATTCCGGAAT→ATTCCGGAATTCCGGAATTCCGGA';
+  position: absolute;
+  top: 30%;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.65rem;
+  line-height: 2.2;
+  color: rgba(252, 36, 15, 0.08);
+  letter-spacing: 0.12em;
+  white-space: pre-line;
+  overflow: hidden;
+  animation: dnaMatrixFlow 35s linear infinite reverse;
+  pointer-events: none;
+  text-shadow: 0 0 8px rgba(252, 36, 15, 0.05);
+  z-index: 0;
+}
+
+@keyframes dnaMatrixFlow {
   0% { 
-    transform: translateY(100%) translateX(-5%) rotate(-1deg) scale(1.05);
-    filter: blur(0.5px) brightness(1.2);
-    opacity: 0.6;
+    transform: translateX(-100%);
+    opacity: 0.1;
   }
-  25% {
-    transform: translateY(50%) translateX(2%) rotate(0deg) scale(1);
-    filter: blur(0px) brightness(1);
-    opacity: 0.8;
+  10% {
+    opacity: 0.2;
   }
-  50% {
-    transform: translateY(0%) translateX(-2%) rotate(0.5deg) scale(0.98);
-    filter: blur(0px) brightness(1.1);
-    opacity: 0.9;
-  }
-  75% {
-    transform: translateY(-50%) translateX(3%) rotate(-0.5deg) scale(0.95);
-    filter: blur(0.3px) brightness(0.9);
-    opacity: 0.7;
+  90% {
+    opacity: 0.2;
   }
   100% { 
-    transform: translateY(-100%) translateX(-5%) rotate(1deg) scale(0.92);
-    filter: blur(0.8px) brightness(0.8);
-    opacity: 0.5;
+    transform: translateX(0%);
+    opacity: 0.1;
   }
 }
 
@@ -333,49 +378,28 @@ p {
   z-index: 2;
   will-change: transform, opacity;
   backface-visibility: hidden;
-  perspective: 1000px;
+  transform: translateZ(0);
 }
 
-/* Floating DNA Elements */
-.hero-content::before {
-  content: '';
-  position: absolute;
-  top: 10%;
-  left: 5%;
-  width: 200px;
-  height: 200px;
-  background: 
-    radial-gradient(circle at 50% 20%, rgba(252, 36, 15, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 50% 80%, rgba(252, 36, 15, 0.05) 0%, transparent 50%);
-  border-radius: 50%;
-  animation: float 8s ease-in-out infinite;
-  pointer-events: none;
-}
-
-.hero-content::after {
-  content: '';
-  position: absolute;
-  top: 20%;
-  right: 8%;
-  width: 150px;
-  height: 150px;
-  background: 
-    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
-  border-radius: 50%;
-  animation: float 6s ease-in-out infinite reverse;
-  pointer-events: none;
-}
-
-@keyframes float {
-  0%, 100% { 
-    transform: translateY(0px) rotate(0deg);
-    opacity: 0.3;
+/* Mobile Performance Optimization */
+@media (max-width: 768px) {
+  .hero {
+    will-change: auto;
+    transform: none;
   }
-  50% { 
-    transform: translateY(-20px) rotate(180deg);
-    opacity: 0.6;
+  
+  .hero-content {
+    will-change: auto;
+    transform: none;
+  }
+  
+  .hero::after,
+  .hero::before {
+    animation-duration: 40s;
+    opacity: 0.1;
   }
 }
+
 
 
 .hero-content h1 {
@@ -385,11 +409,15 @@ p {
 
 .lead {
   font-size: var(--font-size-xl);
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
   max-width: 700px;
   margin-bottom: var(--spacing-8);
   position: relative;
   z-index: 2;
+  line-height: 1.6;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 .hero-cta {
@@ -411,17 +439,43 @@ p {
 .hero-stats .stat-item {
   text-align: center;
   padding: var(--spacing-3) var(--spacing-4);
-  background: rgba(255, 255, 255, 0.1);
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.08) 100%),
+    rgba(0, 0, 0, 0.2);
   border-radius: var(--border-radius);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
+  backdrop-filter: blur(15px) saturate(1.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-stats .stat-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(252, 36, 15, 0.1) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .hero-stats .stat-item:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 25px rgba(252, 36, 15, 0.2);
+  transform: translateY(-3px) scale(1.02);
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.12) 100%),
+    rgba(0, 0, 0, 0.15);
+  box-shadow: 
+    0 12px 35px rgba(252, 36, 15, 0.25),
+    0 6px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(252, 36, 15, 0.3);
+}
+
+.hero-stats .stat-item:hover::before {
+  opacity: 1;
 }
 
 .hero-stats .stat-number {
@@ -496,17 +550,41 @@ p {
 }
 
 .button.primary {
-  background-color: var(--color-bodyos-orange);
+  background: linear-gradient(135deg, var(--color-bodyos-orange) 0%, var(--color-bodyos-orange-dark) 100%);
   color: var(--color-white);
   border-color: var(--color-bodyos-orange);
-  box-shadow: var(--shadow-base);
+  box-shadow: 
+    0 4px 15px rgba(252, 36, 15, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.button.primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: left 0.6s ease;
+}
+
+.button.primary:hover::before {
+  left: 100%;
 }
 
 .button.primary:hover {
-  background-color: var(--color-bodyos-orange-dark);
-  border-color: var(--color-bodyos-orange-dark);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--color-bodyos-orange-light) 0%, var(--color-bodyos-orange) 100%);
+  border-color: var(--color-bodyos-orange-light);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 8px 25px rgba(252, 36, 15, 0.3),
+    0 4px 15px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .button.secondary {
@@ -583,18 +661,40 @@ p {
 }
 
 .access-card {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.08) 100%),
+    rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-6);
-  box-shadow: var(--shadow-base);
-  transition: var(--transition-base);
-  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  backdrop-filter: blur(20px) saturate(1.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.access-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(252, 36, 15, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .bodyos-section .access-card {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.08) 100%),
+    rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .bodyos-section .access-card h3,
@@ -603,8 +703,18 @@ p {
 }
 
 .access-card:hover {
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    0 6px 20px rgba(0, 0, 0, 0.25),
+    0 2px 8px rgba(252, 36, 15, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px) scale(1.01);
+  border-color: rgba(252, 36, 15, 0.3);
+}
+
+.access-card:hover::before {
+  opacity: 1;
 }
 
 .access-card h3 {
@@ -783,22 +893,37 @@ p {
 
 .waitlist-form input {
   padding: var(--spacing-3) var(--spacing-4);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: var(--border-radius);
-  background: rgba(255, 255, 255, 0.1);
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.08) 100%),
+    rgba(0, 0, 0, 0.2);
   color: var(--color-white);
   font-family: inherit;
-  backdrop-filter: blur(10px);
+  font-size: var(--font-size-base);
+  backdrop-filter: blur(15px);
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .waitlist-form input::placeholder {
   color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
 }
 
 .waitlist-form input:focus {
   outline: none;
   border-color: var(--color-bodyos-orange);
-  background: rgba(255, 255, 255, 0.15);
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.12) 100%),
+    rgba(0, 0, 0, 0.15);
+  box-shadow: 
+    0 0 0 2px rgba(252, 36, 15, 0.2),
+    0 4px 16px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
 }
 
 .thank-you-message {
@@ -844,11 +969,33 @@ p {
   color: var(--color-bodyos-orange);
   text-decoration: none;
   font-weight: 500;
-  transition: var(--transition-base);
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  position: relative;
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--border-radius);
+  display: inline-block;
+}
+
+.contact-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(252, 36, 15, 0.1) 0%, rgba(252, 36, 15, 0.05) 100%);
+  border-radius: var(--border-radius);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .contact-link:hover {
-  color: var(--color-bodyos-orange-dark);
+  color: var(--color-bodyos-orange-light);
+  transform: translateY(-1px);
+}
+
+.contact-link:hover::before {
+  opacity: 1;
 }
 
 /* Footer */
@@ -1026,10 +1173,6 @@ footer {
   }
 }
 
-/* Additional floating elements */
-.hero::before {
-  animation: float 12s ease-in-out infinite;
-}
 
 /* Scroll Reveal */
 @media (prefers-reduced-motion: reduce) {
