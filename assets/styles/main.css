@@ -131,7 +131,7 @@ p {
 }
 
 .nav-brand {
-  margin-right: var(--spacing-16);
+  margin-right: var(--spacing-24);
 }
 
 .nav-logo {
@@ -516,6 +516,7 @@ footer {
 .footer-logo {
   height: 20px;
   width: auto;
+  filter: invert(1);
 }
 
 .footer-details {
