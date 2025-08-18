@@ -76,6 +76,111 @@
             button.disabled = false;
           }, 1000);
         });
+        
+        // Apple-style scroll animations
+        const scrollElements = {
+          hero: document.querySelector('.hero'),
+          heroContent: document.querySelector('.hero-content'),
+          productSection: document.querySelector('.bodyos-section'),
+          productBrand: document.querySelector('.product-brand'),
+          productContent: document.querySelector('.product-content'),
+          aboutSection: document.querySelector('#about'),
+          waitlistSection: document.querySelector('#waitlist')
+        };
+        
+        let ticking = false;
+        
+        function updateScrollEffects() {
+          const scrollTop = window.pageYOffset;
+          const windowHeight = window.innerHeight;
+          
+          // Hero parallax and scaling effects
+          if (scrollElements.hero && scrollElements.heroContent) {
+            const heroHeight = scrollElements.hero.offsetHeight;
+            const scrollProgress = Math.min(scrollTop / heroHeight, 1);
+            
+            // Parallax background
+            scrollElements.hero.style.transform = `translateY(${scrollTop * 0.5}px)`;
+            
+            // Scale and fade hero content
+            const scale = 1 - (scrollProgress * 0.1);
+            const opacity = 1 - (scrollProgress * 0.8);
+            scrollElements.heroContent.style.transform = `scale(${scale}) translateY(${scrollTop * 0.3}px)`;
+            scrollElements.heroContent.style.opacity = opacity;
+          }
+          
+          // Product section reveal
+          if (scrollElements.productSection) {
+            const rect = scrollElements.productSection.getBoundingClientRect();
+            const isVisible = rect.top < windowHeight && rect.bottom > 0;
+            
+            if (isVisible) {
+              const progress = Math.max(0, Math.min(1, (windowHeight - rect.top) / windowHeight));
+              
+              if (scrollElements.productBrand) {
+                scrollElements.productBrand.style.transform = `translateX(${-50 * (1 - progress)}px)`;
+                scrollElements.productBrand.style.opacity = progress;
+              }
+              
+              if (scrollElements.productContent) {
+                scrollElements.productContent.style.transform = `translateX(${50 * (1 - progress)}px)`;
+                scrollElements.productContent.style.opacity = progress;
+              }
+            }
+          }
+          
+          // About section stagger animation
+          if (scrollElements.aboutSection) {
+            const rect = scrollElements.aboutSection.getBoundingClientRect();
+            const isVisible = rect.top < windowHeight * 0.8;
+            
+            if (isVisible) {
+              const progress = Math.max(0, Math.min(1, (windowHeight * 0.8 - rect.top) / (windowHeight * 0.3)));
+              const aboutText = scrollElements.aboutSection.querySelector('.about-text');
+              const companyStats = scrollElements.aboutSection.querySelector('.company-stats');
+              
+              if (aboutText) {
+                aboutText.style.transform = `translateY(${30 * (1 - progress)}px)`;
+                aboutText.style.opacity = progress;
+              }
+              
+              if (companyStats) {
+                companyStats.style.transform = `translateY(${50 * (1 - progress)}px)`;
+                companyStats.style.opacity = Math.max(0, progress - 0.3);
+              }
+            }
+          }
+          
+          // Waitlist section slide up
+          if (scrollElements.waitlistSection) {
+            const rect = scrollElements.waitlistSection.getBoundingClientRect();
+            const isVisible = rect.top < windowHeight * 0.9;
+            
+            if (isVisible) {
+              const progress = Math.max(0, Math.min(1, (windowHeight * 0.9 - rect.top) / (windowHeight * 0.4)));
+              const waitlistContent = scrollElements.waitlistSection.querySelector('.waitlist-content');
+              
+              if (waitlistContent) {
+                waitlistContent.style.transform = `translateY(${40 * (1 - progress)}px)`;
+                waitlistContent.style.opacity = progress;
+              }
+            }
+          }
+          
+          ticking = false;
+        }
+        
+        function requestTick() {
+          if (!ticking) {
+            requestAnimationFrame(updateScrollEffects);
+            ticking = true;
+          }
+        }
+        
+        window.addEventListener('scroll', requestTick, { passive: true });
+        
+        // Initialize scroll effects
+        updateScrollEffects();
       });
     </script>
   </head>

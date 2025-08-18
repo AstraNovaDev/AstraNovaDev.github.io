@@ -242,12 +242,18 @@ p {
 /* Hero Section */
 .hero {
   min-height: 80vh;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #262626 100%);
+  background: 
+    linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 26, 26, 0.9) 50%, rgba(38, 38, 38, 0.85) 100%),
+    radial-gradient(circle at 30% 70%, rgba(252, 36, 15, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 70% 30%, rgba(252, 36, 15, 0.02) 0%, transparent 60%),
+    #0a0a0a;
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
   color: white;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .hero::before {
@@ -263,37 +269,56 @@ p {
   pointer-events: none;
 }
 
+/* DNA Sequencing Background */
 .hero::after {
-  content: '';
+  content: 'ATCGATCG→GCTAGCTA→TTAACCGG→AATTCCGG CGCGCGCG→TATATATAT→GCGCGCGC→AAAAAAAA TTTTTTTT→GGGGGGGG→CCCCCCCC→ATGCATGC TTAGCCAA→GGTTAACG→CCGGAATT→TTCCGGAA ATCGATCG→GCTAGCTA→TTAACCGG→AATTCCGG CGCGCGCG→TATATATAT→GCGCGCGC→AAAAAAAA TTTTTTTT→GGGGGGGG→CCCCCCCC→ATGCATGC TTAGCCAA→GGTTAACG→CCGGAATT→TTCCGGAA ATCGATCG→GCTAGCTA→TTAACCGG→AATTCCGG CGCGCGCG→TATATATAT→GCGCGCGC→AAAAAAAA';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    /* DNA Helix Pattern */
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 2px,
-      rgba(252, 36, 15, 0.03) 2px,
-      rgba(252, 36, 15, 0.03) 4px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 2px,
-      rgba(255, 255, 255, 0.02) 2px,
-      rgba(255, 255, 255, 0.02) 4px
-    );
-  animation: dnaScroll 20s linear infinite;
+  top: -50%;
+  left: -10%;
+  right: -10%;
+  bottom: -50%;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Courier New', monospace;
+  font-size: 0.6rem;
+  line-height: 2;
+  color: rgba(252, 36, 15, 0.12);
+  letter-spacing: 0.15em;
+  word-spacing: 1.5em;
+  white-space: pre-wrap;
+  overflow: hidden;
+  animation: dnaSequencing 30s linear infinite;
   pointer-events: none;
-  opacity: 0.5;
+  text-shadow: 0 0 8px rgba(252, 36, 15, 0.08), 0 0 20px rgba(252, 36, 15, 0.04);
+  transform-origin: center;
+  mix-blend-mode: screen;
+  opacity: 0.8;
 }
 
-@keyframes dnaScroll {
-  0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(-100px) rotate(360deg); }
+@keyframes dnaSequencing {
+  0% { 
+    transform: translateY(100%) translateX(-5%) rotate(-1deg) scale(1.05);
+    filter: blur(0.5px) brightness(1.2);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translateY(50%) translateX(2%) rotate(0deg) scale(1);
+    filter: blur(0px) brightness(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(0%) translateX(-2%) rotate(0.5deg) scale(0.98);
+    filter: blur(0px) brightness(1.1);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translateY(-50%) translateX(3%) rotate(-0.5deg) scale(0.95);
+    filter: blur(0.3px) brightness(0.9);
+    opacity: 0.7;
+  }
+  100% { 
+    transform: translateY(-100%) translateX(-5%) rotate(1deg) scale(0.92);
+    filter: blur(0.8px) brightness(0.8);
+    opacity: 0.5;
+  }
 }
 
 .hero-content {
@@ -306,6 +331,9 @@ p {
   padding: var(--spacing-16) 0;
   position: relative;
   z-index: 2;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 /* Floating DNA Elements */
@@ -431,6 +459,7 @@ p {
 /* Sections */
 .section {
   padding: var(--spacing-20) 0;
+  will-change: transform;
 }
 
 .section.light {
@@ -514,6 +543,11 @@ p {
   align-items: center;
 }
 
+.product-brand {
+  will-change: transform, opacity;
+  transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
 @media (max-width: 768px) {
   .product-hero {
     grid-template-columns: 1fr;
@@ -529,6 +563,8 @@ p {
 
 .product-content {
   max-width: 500px;
+  will-change: transform, opacity;
+  transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .product-tagline {
@@ -668,6 +704,11 @@ p {
   width: auto;
 }
 
+.about-text {
+  will-change: transform, opacity;
+  transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
 .about-text p {
   font-size: var(--font-size-lg);
 }
@@ -676,6 +717,8 @@ p {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-6);
+  will-change: transform, opacity;
+  transition: transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .stat {
@@ -707,6 +750,8 @@ p {
   max-width: 500px;
   margin: 0 auto;
   text-align: center;
+  will-change: transform, opacity;
+  transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .waitlist-content h2 {
@@ -939,13 +984,72 @@ footer {
   animation: slideInRight 0.8s ease forwards;
 }
 
+/* Scroll Effects */
+.scroll-fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), 
+              transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.scroll-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.parallax-element {
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+/* Enhanced DNA Animation */
+@keyframes dnaHelix {
+  0% {
+    transform: translateX(-100%) rotateX(0deg);
+    opacity: 0.1;
+  }
+  25% {
+    transform: translateX(-25%) rotateX(90deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateX(50%) rotateX(180deg);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translateX(125%) rotateX(270deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(200%) rotateX(360deg);
+    opacity: 0.1;
+  }
+}
+
+/* Additional floating elements */
+.hero::before {
+  animation: float 12s ease-in-out infinite;
+}
+
 /* Scroll Reveal */
 @media (prefers-reduced-motion: reduce) {
   .fade-in-up,
   .slide-in-left,
-  .slide-in-right {
-    animation: none;
-    opacity: 1;
-    transform: none;
+  .slide-in-right,
+  .scroll-fade {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  .hero,
+  .hero-content,
+  .product-brand,
+  .product-content,
+  .about-text,
+  .company-stats,
+  .waitlist-content {
+    will-change: auto;
   }
 }
