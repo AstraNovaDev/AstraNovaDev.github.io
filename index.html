@@ -221,6 +221,7 @@
             // Position each row with tighter spacing
             const topPosition = 1.6 + (i * 1.1); // Start after first row, space them 1.1rem apart
             row.style.top = `${topPosition}rem`;
+            row.style.width = '300%';
             
             // Fade opacity as rows get further from top
             const baseOpacity = 0.45 - (i * 0.05); // Start at 0.45, decrease by 0.05 each row
@@ -233,8 +234,8 @@
               0 0 24px rgba(217, 30, 10, ${glowOpacity * 0.2})
             `;
             
-            // Set sequence content
-            row.textContent = sequences[i];
+            // Set sequence content - make it longer for seamless loop
+            row.textContent = sequences[i] + ' ' + sequences[i] + ' ' + sequences[i];
             
             // Add letter spacing
             row.style.letterSpacing = '0.08em';
