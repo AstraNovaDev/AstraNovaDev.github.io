@@ -108,9 +108,9 @@
               scrollElements.heroContent.style.transform = `scale(${scale}) translateY(${scrollTop * 0.2}px)`;
               scrollElements.heroContent.style.opacity = opacity;
             } else {
-              // Mobile: gentle fade and slight movement
-              const opacity = 1 - (scrollProgress * 0.4);
-              scrollElements.heroContent.style.transform = `translateY(${scrollTop * 0.1}px)`;
+              // Mobile: more pronounced scroll effect
+              const opacity = 1 - (scrollProgress * 0.6);
+              scrollElements.heroContent.style.transform = `translateY(${scrollTop * 0.15}px)`;
               scrollElements.heroContent.style.opacity = opacity;
             }
           }
