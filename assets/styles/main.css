@@ -124,14 +124,15 @@ p {
 /* Navigation */
 .navbar {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: var(--spacing-6) 0;
   background: var(--color-white);
+  gap: var(--spacing-16);
 }
 
 .nav-logo {
-  height: 36px;
+  height: 20px;
   width: auto;
   transition: var(--transition-base);
 }
