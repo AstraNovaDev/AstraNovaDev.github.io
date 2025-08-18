@@ -127,8 +127,9 @@ h1 {
 }
 
 .highlight {
-  color: var(--color-bodyos-orange);
+  color: #e63946;
   position: relative;
+  font-weight: 800;
 }
 
 .hero-badge {
@@ -138,14 +139,14 @@ h1 {
 .badge {
   display: inline-block;
   padding: var(--spacing-2) var(--spacing-4);
-  background: linear-gradient(135deg, var(--color-bodyos-orange), var(--color-bodyos-orange-light));
+  background: linear-gradient(135deg, #6c757d, #495057);
   color: white;
   font-size: var(--font-size-sm);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border-radius: 999px;
-  box-shadow: 0 4px 14px rgba(252, 36, 15, 0.3);
+  box-shadow: 0 4px 14px rgba(108, 117, 125, 0.2);
 }
 
 h2 {
@@ -233,9 +234,23 @@ p {
 /* Hero Section */
 .hero {
   min-height: 80vh;
-  background: linear-gradient(135deg, #fafbfc 0%, var(--bg-primary) 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f7f8f9 50%, var(--bg-primary) 100%);
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(230, 57, 70, 0.05) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(45, 55, 72, 0.03) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .hero-content {
@@ -279,22 +294,24 @@ p {
 .hero-stats .stat-item {
   text-align: center;
   padding: var(--spacing-3) var(--spacing-4);
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.03);
   border-radius: var(--border-radius);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition: transform 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
 }
 
 .hero-stats .stat-item:hover {
   transform: translateY(-2px);
+  background: rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .hero-stats .stat-number {
   display: block;
   font-size: var(--font-size-base);
   font-weight: 700;
-  color: var(--color-bodyos-orange);
+  color: #2d3748;
 }
 
 .hero-stats .stat-label {
