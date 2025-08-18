@@ -35,33 +35,46 @@
           button.textContent = 'Joining...';
           button.disabled = true;
           
-          // Send to Google Forms
-          fetch('https://docs.google.com/forms/d/e/1FAIpQLSfdsoTqebAfw-C5UeJ2VXUhcuintHAuSScJl-oGjWmE0sRmOw/formResponse', {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({
-              'entry.2091938621': firstName,
-              'entry.796184230': lastName,
-              'entry.34202792': email
-            })
-          })
-          .then(() => {
-            // Show success message
+          // Try different approach - create hidden iframe method
+          const iframe = document.createElement('iframe');
+          iframe.style.display = 'none';
+          iframe.name = 'hiddenFrame';
+          document.body.appendChild(iframe);
+          
+          // Create a temporary form that submits to Google Forms
+          const tempForm = document.createElement('form');
+          tempForm.action = 'https://docs.google.com/forms/d/e/1FAIpQLSfdsoTqebAfw-C5UeJ2VXUhcuintHAuSScJl-oGjWmE0sRmOw/formResponse';
+          tempForm.method = 'POST';
+          tempForm.target = 'hiddenFrame';
+          
+          // Add the form fields
+          const fields = [
+            { name: 'entry.2091938621', value: firstName },
+            { name: 'entry.796184230', value: lastName },
+            { name: 'entry.34202792', value: email }
+          ];
+          
+          fields.forEach(field => {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = field.name;
+            input.value = field.value;
+            tempForm.appendChild(input);
+          });
+          
+          document.body.appendChild(tempForm);
+          tempForm.submit();
+          
+          // Clean up and show success
+          setTimeout(() => {
+            document.body.removeChild(tempForm);
+            document.body.removeChild(iframe);
             document.querySelector('.waitlist-form').style.display = 'none';
             document.getElementById('thank-you').style.display = 'block';
             window.location.hash = 'thank-you';
-          })
-          .catch(() => {
-            // Fallback - create email link
-            const subject = 'BodyOS Waitlist Signup';
-            const body = `First Name: ${firstName}%0D%0ALast Name: ${lastName}%0D%0AEmail: ${email}%0D%0ATimestamp: ${new Date().toISOString()}`;
-            window.location.href = `mailto:waitlist@astranovallc.com?subject=${subject}&body=${body}`;
-          })
-          .finally(() => {
             button.textContent = 'Join Waitlist';
             button.disabled = false;
-          });
+          }, 1000);
         });
       });
     </script>
