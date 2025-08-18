@@ -26,7 +26,8 @@
         document.getElementById('waitlistForm').addEventListener('submit', function(e) {
           e.preventDefault();
           
-          const name = document.getElementById('fullName').value;
+          const firstName = document.getElementById('firstName').value;
+          const lastName = document.getElementById('lastName').value;
           const email = document.getElementById('emailAddress').value;
           const button = e.target.querySelector('button');
           
@@ -40,7 +41,8 @@
             mode: 'no-cors',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams({
-              'entry.2091938621': name,
+              'entry.2091938621': firstName,
+              'entry.796184230': lastName,
               'entry.34202792': email
             })
           })
@@ -53,7 +55,7 @@
           .catch(() => {
             // Fallback - create email link
             const subject = 'BodyOS Waitlist Signup';
-            const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0ATimestamp: ${new Date().toISOString()}`;
+            const body = `First Name: ${firstName}%0D%0ALast Name: ${lastName}%0D%0AEmail: ${email}%0D%0ATimestamp: ${new Date().toISOString()}`;
             window.location.href = `mailto:waitlist@astranovallc.com?subject=${subject}&body=${body}`;
           })
           .finally(() => {
@@ -155,9 +157,10 @@
           
           <form class="waitlist-form" id="waitlistForm">
             <div class="form-group">
-              <input type="text" id="fullName" name="name" placeholder="Full Name" required />
-              <input type="email" id="emailAddress" name="email" placeholder="Email Address" required />
+              <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
+              <input type="text" id="lastName" name="lastName" placeholder="Last Name" required />
             </div>
+            <input type="email" id="emailAddress" name="email" placeholder="Email Address" required />
             <button type="submit" class="button primary large">Join Waitlist</button>
           </form>
           
