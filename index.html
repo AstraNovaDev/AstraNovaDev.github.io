@@ -195,49 +195,6 @@
         // Initialize scroll effects
         updateScrollEffects();
         
-        // Generate DNA sequences
-        generateDNASequences();
-        
-        function generateDNASequences() {
-          const heroContent = document.querySelector('.hero-content');
-          if (!heroContent) return;
-          
-          // DNA bases for randomization
-          const bases = ['A', 'T', 'C', 'G'];
-          
-          // Generate random DNA sequence
-          function generateRandomSequence(length = 200) {
-            let sequence = '';
-            for (let i = 0; i < length; i++) {
-              if (i > 0 && i % 4 === 0) sequence += '→';
-              sequence += bases[Math.floor(Math.random() * bases.length)];
-            }
-            return sequence + ' ' + sequence; // Duplicate for seamless loop
-          }
-          
-          // Create DNA lines at top and bottom
-          const heroHeight = heroContent.offsetHeight;
-          const lineHeight = 1.2; // rem
-          const numberOfLines = 6; // 3 at top, 3 at bottom
-          
-          // Top lines
-          for (let i = 0; i < 3; i++) {
-            const line = document.createElement('div');
-            line.className = `dna-line ${i % 2 === 0 ? 'scroll-left' : 'scroll-right'}`;
-            line.style.top = `${i * lineHeight + 0.5}rem`;
-            line.textContent = generateRandomSequence();
-            heroContent.appendChild(line);
-          }
-          
-          // Bottom lines  
-          for (let i = 0; i < 3; i++) {
-            const line = document.createElement('div');
-            line.className = `dna-line ${i % 2 === 0 ? 'scroll-right' : 'scroll-left'}`;
-            line.style.bottom = `${i * lineHeight + 0.5}rem`;
-            line.textContent = generateRandomSequence();
-            heroContent.appendChild(line);
-          }
-        }
       });
     </script>
   </head>
