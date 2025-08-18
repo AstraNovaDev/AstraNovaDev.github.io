@@ -128,7 +128,10 @@ p {
   align-items: center;
   padding: var(--spacing-6) 0;
   background: var(--color-white);
-  gap: var(--spacing-16);
+}
+
+.nav-brand {
+  margin-right: var(--spacing-16);
 }
 
 .nav-logo {
@@ -513,7 +516,6 @@ footer {
 .footer-logo {
   height: 20px;
   width: auto;
-  filter: invert(1);
 }
 
 .footer-details {
