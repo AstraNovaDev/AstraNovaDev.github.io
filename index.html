@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AstraNova LLC | Health Technology Innovation</title>
     <link rel="stylesheet" href="assets/styles/main.css" />
+    <script>
+      // Reset to top on page load/refresh
+      window.addEventListener('beforeunload', function() {
+        window.scrollTo(0, 0);
+      });
+      
+      window.addEventListener('load', function() {
+        window.scrollTo(0, 0);
+        
+        // Show thank you message if redirected from form
+        if (window.location.hash === '#thank-you') {
+          document.getElementById('thank-you').style.display = 'block';
+          document.querySelector('.waitlist-form').style.display = 'none';
+        } else {
+          history.replaceState({}, document.title, window.location.pathname);
+        }
+      });
+    </script>
   </head>
   <body>
     <header class="hero">
@@ -94,13 +112,19 @@
           <h2>Join the BodyOS Waitlist</h2>
           <p>Be among the first to experience the future of personalized health optimization.</p>
           
-          <form class="waitlist-form" action="mailto:contact@astranovallc.com" method="POST" enctype="text/plain">
+          <form class="waitlist-form" action="mailto:waitlist@astranovallc.com" method="POST" enctype="text/plain">
             <div class="form-group">
               <input type="text" name="Name" placeholder="Full Name" required />
               <input type="email" name="Email" placeholder="Email Address" required />
             </div>
+            <input type="hidden" name="Subject" value="BodyOS Waitlist Signup" />
             <button type="submit" class="button primary large">Join Waitlist</button>
           </form>
+          
+          <div id="thank-you" class="thank-you-message" style="display: none;">
+            <h3>Welcome to the BodyOS Waitlist!</h3>
+            <p>We'll notify you as soon as alpha access becomes available.</p>
+          </div>
         </div>
       </div>
     </section>
