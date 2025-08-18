@@ -101,17 +101,16 @@
             const scrollProgress = Math.min(scrollTop / heroHeight, 1);
             
             if (!isMobile) {
-              // Parallax background (desktop only)
+              // Desktop: full parallax effects
               scrollElements.hero.style.transform = `translateY(${scrollTop * 0.3}px)`;
-              
-              // Scale and fade hero content (reduced effect)
               const scale = 1 - (scrollProgress * 0.05);
               const opacity = 1 - (scrollProgress * 0.6);
               scrollElements.heroContent.style.transform = `scale(${scale}) translateY(${scrollTop * 0.2}px)`;
               scrollElements.heroContent.style.opacity = opacity;
             } else {
-              // Mobile: simpler fade effect only
-              const opacity = 1 - (scrollProgress * 0.5);
+              // Mobile: gentle fade and slight movement
+              const opacity = 1 - (scrollProgress * 0.4);
+              scrollElements.heroContent.style.transform = `translateY(${scrollTop * 0.1}px)`;
               scrollElements.heroContent.style.opacity = opacity;
             }
           }
@@ -125,20 +124,16 @@
               const progress = Math.max(0, Math.min(1, (windowHeight - rect.top) / windowHeight));
               
               if (scrollElements.productBrand) {
-                if (!isMobile) {
-                  scrollElements.productBrand.style.transform = `translateX(${-50 * (1 - progress)}px)`;
-                } else {
-                  scrollElements.productBrand.style.transform = `translateY(${20 * (1 - progress)}px)`;
-                }
+                const translateX = !isMobile ? -50 * (1 - progress) : 0;
+                const translateY = isMobile ? 30 * (1 - progress) : 0;
+                scrollElements.productBrand.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`;
                 scrollElements.productBrand.style.opacity = progress;
               }
               
               if (scrollElements.productContent) {
-                if (!isMobile) {
-                  scrollElements.productContent.style.transform = `translateX(${50 * (1 - progress)}px)`;
-                } else {
-                  scrollElements.productContent.style.transform = `translateY(${30 * (1 - progress)}px)`;
-                }
+                const translateX = !isMobile ? 50 * (1 - progress) : 0;
+                const translateY = isMobile ? 40 * (1 - progress) : 0;
+                scrollElements.productContent.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`;
                 scrollElements.productContent.style.opacity = progress;
               }
             }
@@ -155,13 +150,15 @@
               const companyStats = scrollElements.aboutSection.querySelector('.company-stats');
               
               if (aboutText) {
-                aboutText.style.transform = `translateY(${30 * (1 - progress)}px)`;
+                const translateY = isMobile ? 25 * (1 - progress) : 30 * (1 - progress);
+                aboutText.style.transform = `translateY(${translateY}px)`;
                 aboutText.style.opacity = progress;
               }
               
               if (companyStats) {
-                companyStats.style.transform = `translateY(${50 * (1 - progress)}px)`;
-                companyStats.style.opacity = Math.max(0, progress - 0.3);
+                const translateY = isMobile ? 35 * (1 - progress) : 50 * (1 - progress);
+                companyStats.style.transform = `translateY(${translateY}px)`;
+                companyStats.style.opacity = Math.max(0, progress - 0.2);
               }
             }
           }
@@ -176,7 +173,8 @@
               const waitlistContent = scrollElements.waitlistSection.querySelector('.waitlist-content');
               
               if (waitlistContent) {
-                waitlistContent.style.transform = `translateY(${40 * (1 - progress)}px)`;
+                const translateY = isMobile ? 30 * (1 - progress) : 40 * (1 - progress);
+                waitlistContent.style.transform = `translateY(${translateY}px)`;
                 waitlistContent.style.opacity = progress;
               }
             }
