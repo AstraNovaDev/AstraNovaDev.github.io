@@ -14,63 +14,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy – BodyOS (AstraNova LLC)</title>
   <link rel="stylesheet" href="assets/styles/main.css">
-  <style>
-    .privacy-content {
-      max-width: 900px;
-      margin: 2rem auto;
-      padding: 2rem 1rem;
-      line-height: 1.6;
-    }
-    .privacy-content h1 {
-      color: var(--color-bodyos-orange);
-      border-bottom: 2px solid var(--color-bodyos-orange);
-      padding-bottom: 1rem;
-      margin-bottom: 2rem;
-    }
-    .privacy-content h2 {
-      color: var(--text-primary);
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    .privacy-content h3 {
-      color: var(--text-secondary);
-      margin-top: 2rem;
-      margin-bottom: 0.75rem;
-    }
-    .privacy-content ul, .privacy-content ol {
-      margin: 1rem 0;
-      padding-left: 1.5rem;
-    }
-    .privacy-content li {
-      margin: 0.5rem 0;
-    }
-    .privacy-content code {
-      background: var(--bg-secondary);
-      padding: 0.2rem 0.4rem;
-      border-radius: 3px;
-      font-family: 'Monaco', 'Menlo', monospace;
-    }
-    .back-link {
-      display: inline-flex;
-      align-items: center;
-      color: var(--text-secondary);
-      text-decoration: none;
-      margin-bottom: 2rem;
-      font-size: var(--font-size-sm);
-      transition: color 0.2s ease;
-    }
-    .back-link:hover {
-      color: var(--color-bodyos-orange);
-    }
-    .back-link::before {
-      content: "←";
-      margin-right: 0.5rem;
-    }
-  </style>
 </head>
 <body>
-  <div class="privacy-content">
-    <a href="/" class="back-link">Back to AstraNova</a>
+  <header class="hero" style="min-height: 20vh; background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);">
+    <nav class="navbar">
+      <div class="nav-brand">
+        <img src="assets/brand_assets/AstraNova/AstraNova_Horizontal_Black_No_Logo.png" alt="AstraNova" class="nav-logo" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#products">Products</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="privacy-content">
     
     <h1>Privacy Policy</h1>
     <p><strong>Effective Date:</strong> <span id="date"></span></p>
@@ -148,7 +110,7 @@
       <li>Opt out of personalized advertising</li>
       <li>Withdraw consent for optional processing (e.g., research use of de-identified data)</li>
     </ul>
-    <p>Contact us at <a href="mailto:contact@astranovallc.com">contact@astranovallc.com</a> to exercise these rights.</p>
+    <p>Contact us at <a href="mailto:contact@astranovallc.com">contact@astranovallc.com</a> to exercise these rights. You can also <a href="/delete-account.html">delete your account</a> directly through the app.</p>
 
     <h2>9. Children's Privacy</h2>
     <p>BodyOS is not directed to children under 13 (or under the age of digital consent in your region). We do not knowingly collect data from children. If we discover that a child has provided us personal data, we will delete it.</p>
@@ -164,9 +126,31 @@
        <a href="mailto:contact@astranovallc.com">contact@astranovallc.com</a><br>
        AstraNova LLC, 6580 Monona Drive #1039, Monona, WI 53716, USA</p>
 
-    <script>
-      document.getElementById("date").textContent = new Date().toISOString().slice(0,10);
-    </script>
-  </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="assets/brand_assets/AstraNova/AstraNova_Horizontal_No_Logo.png" alt="AstraNova" class="footer-logo" />
+        </div>
+        <div class="footer-details">
+          <span>6580 Monona Dr #1039, Monona, WI 53716</span>
+          <span>contact@astranovallc.com | (608) 620-4548</span>
+          <span>
+            <a href="/privacy-policy.html" class="privacy-link">Privacy Policy</a>
+            <span class="separator">•</span>
+            <a href="/delete-account.html" class="privacy-link">Delete Account</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("date").textContent = new Date().toISOString().slice(0,10);
+  </script>
 </body>
 </html>
