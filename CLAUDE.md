@@ -42,8 +42,34 @@ The single-page site includes:
 
 ## Styling Architecture
 
-- CSS custom properties (CSS variables) defined in `:root`
-- Mobile-first responsive design with media queries
-- Dark theme with orange accent color (`#ff4f00`)
-- Grid layout for product section
-- Flexbox for navigation and footer
+- **CSS Custom Properties**: Comprehensive design system with color palette, typography scale, and spacing variables in `:root`
+- **Color System**: 
+  - Adaptive color scheme with automatic dark/light mode detection via `prefers-color-scheme`
+  - BodyOS brand color: `#fc240f` (sunburst red-orange) with lighter/darker variants
+  - Monochrome grayscale palette (50-900) for neutral elements
+- **Responsive Design**: Mobile-first approach with breakpoint-based media queries
+- **Layout Systems**: CSS Grid for product sections, Flexbox for navigation and footer layouts
+- **Typography**: Inter font family with predefined size scale (xs to 5xl)
+
+## JavaScript Features
+
+The `index.html` includes sophisticated client-side functionality:
+
+- **Google Analytics**: Integrated tracking with gtag
+- **Scroll Animations**: Apple-style parallax effects for hero, product sections, and staggered reveals
+- **Form Handling**: Dynamic waitlist form submission to Google Forms with loading states
+- **DNA Animation**: Dynamically generated scrolling DNA sequences with opacity gradients
+- **URL State Management**: Hash-based navigation for thank-you messages
+- **Performance Optimizations**: Throttled scroll events using `requestAnimationFrame`
+
+## Brand Assets Structure
+
+- `assets/brand_assets/AstraNova/` - Company logo variations (black, white, horizontal)
+- `assets/brand_assets/BodyOS/` - Product branding with icons and logos in multiple formats
+- All assets provided in multiple sizes (1000px, 2000px) and formats (PNG)
+
+## External Integrations
+
+- **Google Forms**: Waitlist submission via hidden iframe method
+- **External Links**: BodyOS web app (`bodyosapp.com`) for alpha access
+- **GitHub Pages**: Automatic deployment from main branch to custom domain (`www.astranovallc.com`)

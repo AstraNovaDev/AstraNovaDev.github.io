@@ -1047,6 +1047,37 @@ footer {
   text-align: right;
 }
 
+.privacy-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.privacy-link:hover {
+  opacity: 1;
+}
+
+.app-info {
+  margin-top: var(--spacing-4);
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: var(--spacing-4);
+}
+
+.app-policy-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  opacity: 0.7;
+  font-size: var(--font-size-xs);
+  transition: opacity 0.2s ease;
+}
+
+.app-policy-link:hover {
+  opacity: 1;
+  color: var(--color-bodyos-orange);
+}
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
